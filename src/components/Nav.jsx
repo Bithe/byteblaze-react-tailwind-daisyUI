@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [theme, setTheme] = useState("light");
@@ -18,28 +19,45 @@ const Nav = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-  console.log(theme);
 
   return (
     <div>
       {/* NAVBAR */}
-      <div className="navbar bg-base-100 sticky px-8 z-10">
+      <div className="navbar bg-base-100 sticky shadow px-8 z-10">
         <div className="flex-1">
           <a className="btn btn-ghost text-2xl gap-0">
             Byte<span>Blaze</span>
           </a>
         </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1 font-bold">
-            <li>
-              <a>Home</a>
-            </li>
-            <li>
-              <a>Blog</a>
-            </li>
-            <li>
-              <a>Bookmark</a>
-            </li>
+        <div className="flex-none gap-10">
+          <ul className="menu menu-horizontal px-1 font-bold gap-10">
+
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? " text-primary font-bold " : " font-bold"
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/blogs"
+              className={({ isActive }) =>
+                isActive ? " text-primary font-bold " : " font-bold"
+              }
+            >
+              Blogs
+            </NavLink>
+            <NavLink
+              to="/bookmarks"
+              className={({ isActive }) =>
+                isActive ? " text-primary font-bold " : " font-bold"
+              }
+            >
+              Bookmarks
+            </NavLink>
+
+
           </ul>
 
           {/* THEME */}
