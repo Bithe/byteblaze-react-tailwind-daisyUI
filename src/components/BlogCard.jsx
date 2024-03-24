@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 
 import notFoundImg from "../assets/images/404.jpg";
 
+
 const BlogCard = ({ blog }) => {
+
+
+
   const { id, cover_image, title, description, published_at } = blog;
 
   return (

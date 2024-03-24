@@ -2,6 +2,7 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import Loader from "../components/Loader";
 
+
 const Blogs = () => {
   const blogs = useLoaderData();
   const navigation =  useNavigation();
@@ -12,7 +13,7 @@ if(  navigation.state === 'loading') return <Loader></Loader>
       <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
         <a
           rel="noopener noreferrer"
-          href="#"
+          href={`/blog/${blogs[0]?.id}`}
           className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 bg-gray-900"
         >
           <img
@@ -36,21 +37,14 @@ if(  navigation.state === 'loading') return <Loader></Loader>
         <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
             {
-                blogs.map( (blog) => <BlogCard key={blog.id} blog={blog}></BlogCard>)
+                blogs.slice(1,19).map( (blog) => <BlogCard key={blog.id} blog={blog}></BlogCard>)
             }
         
         </div>
         {/*  */}
 
 
-        <div className="flex justify-center">
-          <button
-            type="button"
-            className="px-6 py-3 text-sm rounded-md hover:underline bg-gray-900 text-gray-400"
-          >
-            Load more posts...
-          </button>
-        </div>
+      
       </div>
     </section>
   );

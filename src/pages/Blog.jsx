@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
-
+import { BsFillBookmarkStarFill } from "react-icons/bs";
+import { saveBlog } from "../utility";
 
 const Blog = () => {
   const blog = useLoaderData();
@@ -14,8 +15,14 @@ const Blog = () => {
     public_reactions_count,
     cover_image,
     published_at,
-    tags,
   } = blog;
+
+  const handleBookmark = (blog) =>{
+    console.log(blog);
+
+    saveBlog(blog);
+  }
+
 
   return (
     <div className="max-w-4xl py-16 mx-auto space-y-12">
@@ -89,6 +96,13 @@ const Blog = () => {
               </svg>
               <span>Author</span>
             </Link>
+
+            {/* BOOKMARK */}
+            <div onClick={() =>handleBookmark(blog)} className=" p-3 ml-5 rounded-full hover:bg-opacity-30 bg-opacity-20 cursor-pointer bg-slate-800">
+              <BsFillBookmarkStarFill />
+            </div>
+            {/*  */}
+
           </div>
           {/*  */}
         </div>
@@ -96,11 +110,7 @@ const Blog = () => {
         <div className="dark:text-gray-800">
           <Outlet></Outlet>
         </div>
-        
       </article>
-
-  
-
     </div>
   );
 };
